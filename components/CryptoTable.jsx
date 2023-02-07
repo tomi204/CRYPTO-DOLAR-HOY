@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import styles from "../styles/Home.module.css";
 const CryptoTable = () => {
   const [lemon, setLemon] = useState([]);
   const [satoshi, setSatoshi] = useState([]);
   const [belo, setBelo] = useState([]);
+  const [bitso, setBitso] = useState([]);
+  const [binance, setBinance] = useState([]);
+  const [ripio, setRipio] = useState([]);
   async function getData() {
     /// ask precio de compra, bid precio de venta
 
@@ -24,25 +28,63 @@ const CryptoTable = () => {
       .then((response) => response.json())
       .then((data) => data);
     setBelo(beloUSDT);
+
+    //////////////// bitso
+    const bitsoUSDT = await fetch(" https://criptoya.com/api/bitso/usdt/ars")
+      .then((response) => response.json())
+      .then((data) => data);
+    setBitso(bitsoUSDT);
+    ////////////////////binance
+    // const binanceUSDT = await fetch(
+    //   "https://criptoya.com/api/binancep2p/buysell/usdt/ars/1"
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => data);
+    // setBinance(binanceUSDT);
+
+    //////// Ripio
+
+    const ripioUSDT = await fetch("https://criptoya.com/api/ripio/usdc/ars")
+      .then((response) => response.json())
+      .then((data) => data);
+    setRipio(ripioUSDT);
   }
+
   getData();
+
   return (
-    <table className="table-auto w-full text-left">
-      <thead className="bg-gray-800">
-        <tr className="text-white">
-          <th className="px-4 py-2">Crypto</th>
-          <th className="px-4 py-2">Price</th>
-          <th className="px-4 py-2">Market Cap</th>
-        </tr>
+    <table className="table w-6/12">
+      <thead className="table-header-group ">
+        <th className="px-4 py-2">Compra</th>
+        <th className="px-4 py-2">Venta</th>
+        <th className="px-4 py-2">Exchange</th>
       </thead>
-      <tbody>
-        <tr className="bg-gray-100">
-          <td className="border px-4 py-2">venta lemon {lemon.bid}</td>
-          <td className="border px-4 py-2">compra lemon {lemon.ask}</td>
-          <td className="border px-4 py-2">compra satohshi{satoshi.ask}</td>
-          <td className="border px-4 py-2">venta satoshi{satoshi.bid}</td>
-          <td className="border px-4 py-2">compra belo{belo.ask}</td>
-          <td className="border px-4 py-2">venta belo{belo.bid}</td>
+
+      <tbody className="table-row-group">
+        <tr className="table-row">
+          <td className="border px-4 py-2"> {lemon.ask?.toFixed(1)}</td>
+          <td className="border px-4 py-2"> {lemon.bid?.toFixed(1)}</td>
+          <td className="border px-4 py-2">Lemoncash</td>
+        </tr>
+        <tr className="table-row">
+          <td className="border px-4 py-2">{satoshi.ask?.toFixed(1)}</td>
+          <td className="border px-4 py-2">{satoshi.bid?.toFixed(1)}</td>
+          <td className="border px-4 py-2">Satoshi Tango</td>
+        </tr>
+        <tr className="table-row">
+          <td className="border px-4 py-2">{belo.ask?.toFixed(1)}</td>
+          <td className="border px-4 py-2">{belo.bid?.toFixed(1)}</td>
+          <td className="border px-4 py-2">Belo</td>
+        </tr>
+        <tr className="table-row">
+          <td className="border px-4 py-2">{bitso.ask?.toFixed(1)}</td>
+          <td className="border px-4 py-2">{bitso.bid?.toFixed(1)}</td>
+          <td className="border px-4 py-2">Bitso</td>
+        </tr>
+        <tr className="table-row">
+          <td className="border px-4 py-2">{ripio.ask?.toFixed(1)}</td>
+          <td className="border px-4 py-2">{ripio.bid?.toFixed(1)}</td>
+          <td className="border px-4 py-2">Ripio</td>
         </tr>
       </tbody>
     </table>
