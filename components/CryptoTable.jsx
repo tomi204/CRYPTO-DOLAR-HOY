@@ -7,6 +7,7 @@ const CryptoTable = () => {
   const [bitso, setBitso] = useState([]);
   const [binance, setBinance] = useState([]);
   const [ripio, setRipio] = useState([]);
+  const [buenBit, setBuenBit] = useState([]);
   async function getData() {
     /// ask precio de compra, bid precio de venta
 
@@ -48,18 +49,23 @@ const CryptoTable = () => {
       .then((response) => response.json())
       .then((data) => data);
     setRipio(ripioUSDT);
+
+    ///////////////////////////// buenBit
+    const buenBitUSDT = await fetch("https://criptoya.com/api/ripio/usdc/ars")
+      .then((response) => response.json())
+      .then((data) => data);
+    setBuenBit(buenBitUSDT);
   }
 
   getData();
 
   return (
-    <table className="table w-6/12">
+    <table className="table w-6/12 flex items-center justify-center bg-gray-800 text-white	">
       <thead className="table-header-group ">
         <th className="px-4 py-2">Compra</th>
         <th className="px-4 py-2">Venta</th>
         <th className="px-4 py-2">Exchange</th>
       </thead>
-
       <tbody className="table-row-group">
         <tr className="table-row">
           <td className="border px-4 py-2"> {lemon.ask?.toFixed(1)}</td>
@@ -85,6 +91,11 @@ const CryptoTable = () => {
           <td className="border px-4 py-2">{ripio.ask?.toFixed(1)}</td>
           <td className="border px-4 py-2">{ripio.bid?.toFixed(1)}</td>
           <td className="border px-4 py-2">Ripio</td>
+        </tr>
+        <tr className="table-row">
+          <td className="border px-4 py-2">{buenBit.ask?.toFixed(1)}</td>
+          <td className="border px-4 py-2">{buenBit.bid?.toFixed(1)}</td>
+          <td className="border px-4 py-2">BuenBit</td>
         </tr>
       </tbody>
     </table>
