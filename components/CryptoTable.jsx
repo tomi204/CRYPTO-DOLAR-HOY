@@ -17,17 +17,17 @@ const CryptoTable = () => {
     const requestCounter = 0;
     if (requestCounter < limit) {
       requestCounter++;
-      const dolarBlue = await fetch("https://api.bluelytics.com.ar/v2/latest")
+      const dolarBlue = await fetch("https://criptoya.com/api/dolar")
         .then((response) => response.json())
         .then((data) => data)
         .catch((rejected) => {
           console.log(rejected);
         });
-      setDolarBlue(dolarBlue.blue);
-      console.log(dolarBlue);
+      setDolarBlue(dolarBlue);
     } else {
       console.log("Límite de peticiones alcanzado");
     }
+    console.log(dolarBlue, "dadasda");
     //////////////// lemoncash
     const LemonUSDT = await fetch("https://criptoya.com/api/lemoncash/usdt")
       .then((response) => response.json())
@@ -89,15 +89,14 @@ const CryptoTable = () => {
       </thead>
       <tbody className="table-row-group flex justify-center items-center">
         <tr className="table-row">
-          <td className="border px-4 py-2">
-            {" "}
-            {dolarBlue.value_buy?.toFixed(1)}
-          </td>
-          <td className="border px-4 py-2">
-            {" "}
-            {dolarBlue.value_sell?.toFixed(1)}
-          </td>
+          <td className="border px-4 py-2"> {dolarBlue.blue.toFixed(1)}</td>
+          <td className="border px-4 py-2"> {dolarBlue.blue_bid.toFixed(1)}</td>
           <td className="border px-4 py-2">Dolar Blue</td>
+        </tr>
+        <tr className="table-row">
+          <td className="border px-4 py-2"> {dolarBlue.mep?.toFixed(1)}</td>
+          <td className="border px-4 py-2"> {dolarBlue.mep?.toFixed(1)}</td>
+          <td className="border px-4 py-2">Dolar MEP</td>
         </tr>
         <tr className="table-row">
           <td className="border px-4 py-2"> {lemon.ask?.toFixed(1)}</td>
