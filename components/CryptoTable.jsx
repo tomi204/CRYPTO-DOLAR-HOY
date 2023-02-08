@@ -10,13 +10,13 @@ const CryptoTable = () => {
   const [ripio, setRipio] = useState([]);
   const [buenBit, setBuenBit] = useState([]);
   const [dolarBlue, setDolarBlue] = useState([]);
+  const [requestCounter, setRequestCounter] = useState(0);
   async function getData() {
     /// ask precio de compra, bid precio de venta
     /////////////////dolar blue
     const limit = 2; // Número máximo de peticiones permitidas
-    const requestCounter = 0;
-    if (requestCounter < limit) {
-      requestCounter++;
+    if (requestCounter <= limit) {
+      setRequestCounter(requestCounter + 1);
       const dolarBlue = await fetch("https://criptoya.com/api/dolar")
         .then((response) => response.json())
         .then((data) => data)
@@ -27,7 +27,7 @@ const CryptoTable = () => {
     } else {
       console.log("Límite de peticiones alcanzado");
     }
-    console.log(dolarBlue, "dadasda");
+    console.log(requestCounter, "requestCounter");
     //////////////// lemoncash
     const LemonUSDT = await fetch("https://criptoya.com/api/lemoncash/usdt")
       .then((response) => response.json())
