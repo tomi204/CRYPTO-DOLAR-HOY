@@ -89,8 +89,8 @@ const CryptoTable = () => {
       </thead>
       <tbody className="table-row-group flex justify-center items-center">
         <tr className="table-row">
-          <td className="border px-4 py-2"> {dolarBlue.blue.toFixed(1)}</td>
-          <td className="border px-4 py-2"> {dolarBlue.blue_bid.toFixed(1)}</td>
+          <td className="border px-4 py-2">{dolarBlue.blue_bid}</td>
+          <td className="border px-4 py-2">{dolarBlue.blue}</td>
           <td className="border px-4 py-2">Dolar Blue</td>
         </tr>
         <tr className="table-row">
