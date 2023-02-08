@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
+
 const CryptoTable = () => {
   const [lemon, setLemon] = useState([]);
   const [satoshi, setSatoshi] = useState([]);
@@ -8,13 +9,30 @@ const CryptoTable = () => {
   const [binance, setBinance] = useState([]);
   const [ripio, setRipio] = useState([]);
   const [buenBit, setBuenBit] = useState([]);
+  const [dolarBlue, setDolarBlue] = useState([]);
   async function getData() {
     /// ask precio de compra, bid precio de venta
-
+    /////////////////dolar blue
+    const limit = 2; // Número máximo de peticiones permitidas
+    const requestCounter = 0;
+    if (requestCounter < limit) {
+      requestCounter++;
+      const dolarBlue = await fetch("https://api.bluelytics.com.ar/v2/latest")
+        .then((response) => response.json())
+        .then((data) => data)
+        .catch((rejected) => {
+          console.log(rejected);
+        });
+      setDolarBlue(dolarBlue.blue);
+      console.log(dolarBlue);
+    } else {
+      console.log("Límite de peticiones alcanzado");
+    }
     //////////////// lemoncash
     const LemonUSDT = await fetch("https://criptoya.com/api/lemoncash/usdt")
       .then((response) => response.json())
       .then((data) => data);
+
     setLemon(LemonUSDT);
     ///////////////////////// satoshitango
     const satoshiUSDT = await fetch(
@@ -35,16 +53,19 @@ const CryptoTable = () => {
       .then((response) => response.json())
       .then((data) => data);
     setBitso(bitsoUSDT);
+
     ////////////////////binance
     // const binanceUSDT = await fetch(
     //   "https://criptoya.com/api/binancep2p/buysell/usdt/ars/1"
     // )
-    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     checkLimit();
+    //     response.json();
+    //   })
     //   .then((data) => data);
     // setBinance(binanceUSDT);
 
     //////// Ripio
-
     const ripioUSDT = await fetch("https://criptoya.com/api/ripio/usdc/ars")
       .then((response) => response.json())
       .then((data) => data);
@@ -60,13 +81,24 @@ const CryptoTable = () => {
   getData();
 
   return (
-    <table className="table w-6/12 flex items-center justify-center bg-gray-800 text-white	">
-      <thead className="table-header-group ">
+    <table className="table w-6/12 flex items-center justify-center bg-gray-800 text-white mt-14	">
+      <thead className="table-header-group mt-5 ">
         <th className="px-4 py-2">Compra</th>
         <th className="px-4 py-2">Venta</th>
         <th className="px-4 py-2">Exchange</th>
       </thead>
-      <tbody className="table-row-group">
+      <tbody className="table-row-group flex justify-center items-center">
+        <tr className="table-row">
+          <td className="border px-4 py-2">
+            {" "}
+            {dolarBlue.value_buy?.toFixed(1)}
+          </td>
+          <td className="border px-4 py-2">
+            {" "}
+            {dolarBlue.value_sell?.toFixed(1)}
+          </td>
+          <td className="border px-4 py-2">Dolar Blue</td>
+        </tr>
         <tr className="table-row">
           <td className="border px-4 py-2"> {lemon.ask?.toFixed(1)}</td>
           <td className="border px-4 py-2"> {lemon.bid?.toFixed(1)}</td>
