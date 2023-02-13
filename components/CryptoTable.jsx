@@ -6,7 +6,7 @@ const CryptoTable = () => {
   const [satoshi, setSatoshi] = useState([]);
   const [belo, setBelo] = useState([]);
   const [bitso, setBitso] = useState([]);
-  const [binance, setBinance] = useState([]);
+  const [binance, setBinance] = useState();
   const [ripio, setRipio] = useState([]);
   const [buenBit, setBuenBit] = useState([]);
   const [dolarBlue, setDolarBlue] = useState([]);
@@ -55,11 +55,9 @@ const CryptoTable = () => {
 
     //////////////////binance
     const binanceUSDT = await fetch(
-      "https://criptoya.com/api/binancep2p/buysell/usdt/ars/1"
+      "https://criptoya.com/api/binancep2p/buysell/usdt/ars/5"
     )
-      .then((response) => {
-        response.json();
-      })
+      .then((response) => response.json())
       .then((data) => data);
     setBinance(binanceUSDT);
 
@@ -79,7 +77,7 @@ const CryptoTable = () => {
   useEffect(() => {
     getData();
   }, []);
-  console.log(binance);
+  console.log(binance, "binance");
   return (
     <table className="table w-6/12 flex items-center justify-center bg-black text-white mt-14	">
       <thead className="table-header-group mt-5 ">
