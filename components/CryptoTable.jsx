@@ -25,9 +25,8 @@ const CryptoTable = () => {
         });
       setDolarBlue(dolarBlue);
     } else {
-      console.log("Límite de peticiones alcanzado");
+      console.log("");
     }
-    console.log(requestCounter, "requestCounter");
     //////////////// lemoncash
     const LemonUSDT = await fetch("https://criptoya.com/api/lemoncash/usdt")
       .then((response) => response.json())
@@ -54,16 +53,15 @@ const CryptoTable = () => {
       .then((data) => data);
     setBitso(bitsoUSDT);
 
-    ////////////////////binance
-    // const binanceUSDT = await fetch(
-    //   "https://criptoya.com/api/binancep2p/buysell/usdt/ars/1"
-    // )
-    //   .then((response) => {
-    //     checkLimit();
-    //     response.json();
-    //   })
-    //   .then((data) => data);
-    // setBinance(binanceUSDT);
+    //////////////////binance
+    const binanceUSDT = await fetch(
+      "https://criptoya.com/api/binancep2p/buysell/usdt/ars/1"
+    )
+      .then((response) => {
+        response.json();
+      })
+      .then((data) => data);
+    setBinance(binanceUSDT);
 
     //////// Ripio
     const ripioUSDT = await fetch("https://criptoya.com/api/ripio/usdc/ars")
@@ -78,10 +76,12 @@ const CryptoTable = () => {
     setBuenBit(buenBitUSDT);
   }
 
-  getData();
-
+  useEffect(() => {
+    getData();
+  }, []);
+  console.log(binance);
   return (
-    <table className="table w-6/12 flex items-center justify-center bg-gray-800 text-white mt-14	">
+    <table className="table w-6/12 flex items-center justify-center bg-black text-white mt-14	">
       <thead className="table-header-group mt-5 ">
         <th className="px-4 py-2">Compra</th>
         <th className="px-4 py-2">Venta</th>

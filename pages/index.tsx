@@ -9,7 +9,7 @@ import { useIsMounted } from "../utils/mounted";
 const Home: NextPage = () => {
   const mounted = useIsMounted();
   return (
-    <div className=" bg-gray-800 text-white">
+    <div className=" bg-zinc-800 text-white">
       <Head>
         <title>Crypto dolar hoy</title>
         <meta
@@ -19,25 +19,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main className="w-full h-full flex flex-col justify-center items-center mx-auto bg-gray-800 text-white">
+      <main className="w-full h-full flex flex-col justify-center items-center mx-auto bg-zinc-800 text-white">
         <h1 className="mx-auto mt-16">CRYPTO DOLAR HOY</h1>
         {mounted ? <CryptoTable /> : null}
       </main>
 
-      <footer className="w-full border-t-[1px] h-7 bg-gray-800 mt-16 text-white flex justify-left items-center bottom-0">
+      <footer className="w-full border-t-[1px] h-7 bg-zinc-800 mt-16 text-white flex justify-left items-center bottom-0">
         <Link href="/about">
-          <a className="text-white mx-5 text-mb">contact</a>
+          <a className="text-white mx-5 text-m hover:text-cyan-600">contact</a>
         </Link>
-        {/* <Link href="/about">
-          <a className="text-white mx-8 text-xl	">
-            <FaTwitter />
-          </a>
-        </Link>
-        <Link href="/about">
-          <a className="text-white mx-8 text-xl">
-            <FaInstagram />
-          </a>
-        </Link> */}
       </footer>
     </div>
   );
