@@ -18,24 +18,21 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="w-full h-full flex flex-col justify-center items-center mx-auto  text-white">
+      <main className="w-full min-h-screen flex flex-col justify-center items-center mx-auto  text-white">
         <h1 className="mx-auto mt-16 font-mono font-light ">
           CRYPTO DOLAR HOY
         </h1>
         {mounted ? <CryptoTable /> : null}
-      </main>
-
-      <footer className="w-full border-t-[1px] h-7 max-h-10 mt-32 text-white flex justify-center items-center bottom-0">
-        <Link href="/about">
+        <footer className="w-full border-t-[1px] mt-96  m-auto text-white flex justify-center items-center bottom-0">
           <a
             href="https://twitter.com/tomiioliver"
-            className="text-white mt-6 flex items-center justify-center text-m hover:text-cyan-600"
+            className="text-white my-3 flex items-center justify-center text-m hover:text-cyan-600"
           >
             Developed by Tomi204
-            <FaTwitter className="ml-0.5 hover:scale-125" />
+            <FaTwitter className="ml-3 hover:scale-125" />
           </a>
-        </Link>
-      </footer>
+        </footer>
+      </main>
     </div>
   );
 };
