@@ -6,7 +6,6 @@ const CryptoTable = () => {
   const [satoshi, setSatoshi] = useState([]);
   const [belo, setBelo] = useState([]);
   const [bitso, setBitso] = useState([]);
-  const [binance, setBinance] = useState();
   const [ripio, setRipio] = useState([]);
   const [buenBit, setBuenBit] = useState([]);
   const [dolarBlue, setDolarBlue] = useState([]);
@@ -33,6 +32,7 @@ const CryptoTable = () => {
       .then((data) => data);
 
     setLemon(LemonUSDT);
+
     ///////////////////////// satoshitango
     const satoshiUSDT = await fetch(
       "https://criptoya.com/api/satoshitango/usdt/ars"
@@ -54,12 +54,13 @@ const CryptoTable = () => {
     setBitso(bitsoUSDT);
 
     //////////////////binance
-    const binanceUSDT = await fetch(
-      "https://criptoya.com/api/binancep2p/buysell/usdt/ars/5"
-    )
-      .then((response) => response.json())
-      .then((data) => data);
-    setBinance(binanceUSDT);
+    // const binanceUSDT = await fetch(
+    //   "https://criptoya.com/api/binancep2p/buysell/usdt/ars/5"
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => data);
+    // setBinance(binanceUSDT);
+    //todo: arreglar binance
 
     //////// Ripio
     const ripioUSDT = await fetch("https://criptoya.com/api/ripio/usdc/ars")
@@ -77,7 +78,22 @@ const CryptoTable = () => {
   useEffect(() => {
     getData();
   }, []);
-  console.log(binance, "binance");
+  // const all = [lemon, satoshi, belo, bitso, ripio, buenBit];
+  // let maxAsk = 0;
+
+  // for (let i = 0; i < all.length; i++) {
+  //   let askActual = all[i]["bid"];
+
+  //   if (askActual > maxAsk) {
+  //     maxAsk = askActual;
+  //   }
+  // }
+
+  // // Imprimimos el ask máximo encontrado
+  // console.log("El ask máximo es: " + maxAsk);
+
+  ///TODO: HACER LA UI PARA EL EXCHANGE CON EL PRECIO MAS ALTO
+
   return (
     <table className="table w-6/12 flex items-center justify-center bg-black/20  backdrop-blur-3xl text-white mt-14	">
       <thead className="table-header-group mt-5 ">
