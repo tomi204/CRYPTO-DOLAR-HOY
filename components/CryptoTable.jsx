@@ -79,7 +79,7 @@ const CryptoTable = () => {
   }, []);
   console.log(binance, "binance");
   return (
-    <table className="table w-6/12 flex items-center justify-center bg-black text-white mt-14	">
+    <table className="table w-6/12 flex items-center justify-center bg-black/20  backdrop-blur-3xl text-white mt-14	">
       <thead className="table-header-group mt-5 ">
         <th className="px-4 py-2">Compra</th>
         <th className="px-4 py-2">Venta</th>
